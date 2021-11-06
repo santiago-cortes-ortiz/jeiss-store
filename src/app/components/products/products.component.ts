@@ -35,9 +35,17 @@ export class ProductsComponent implements OnInit {
     }
   ]
 
+  myShoppinCart: Product[] = []
+
+  total = 0
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  onAddToShoppinCart(product: Product){
+    this.myShoppinCart.push(product)
+    this.total = this.myShoppinCart.reduce((sum,item) => sum + item.price,0)
+  }
 }
