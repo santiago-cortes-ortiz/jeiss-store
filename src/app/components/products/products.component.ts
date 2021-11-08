@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/models/product';
+//
 import { StoreService } from 'src/app/services/store.service';
+import { ProductsService } from 'src/app/services/products.service';
+import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-products',
@@ -9,42 +12,22 @@ import { StoreService } from 'src/app/services/store.service';
 })
 export class ProductsComponent implements OnInit {
 
-  products: Product[] = [
-    {
-      id: '1',
-      name: 'Boody Story',
-      price: 11,
-      image: './assets/images/toy.png'
-    },
-    {
-      id: '2',
-      name: 'Xbox Series X',
-      price: 500,
-      image: './assets/images/xbox.jpg'
-    },
-    {
-      id: '3',
-      name: 'Libros Aventure',
-      price: 11,
-      image: './assets/images/libros.jpg'
-    }
-    ,{
-      id: '4',
-      name: 'Buso Esy',
-      price: 11,
-      image: './assets/images/buso.jfif'
-    }
-  ]
+  products: Product[] = []
+
 
   myShoppinCart: Product[] = []
   total = 0
 
-  constructor(private _storeService: StoreService) {
+  constructor(private _storeService: StoreService, private _productsService: ProductsService) {
     this.myShoppinCart = this._storeService.getMyShoppinCart();
-
   }
 
   ngOnInit(): void {
+    this._productsService.getAllProducts().subscribe(
+      data => {
+        this.products = data;
+      }
+    );
   }
 
   onAddToShoppinCart(product: Product){
