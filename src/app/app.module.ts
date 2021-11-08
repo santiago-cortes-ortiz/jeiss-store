@@ -10,7 +10,10 @@ import { ProductComponent } from './components/product/product.component';
 import { ProductsComponent } from './components/products/products.component';
 import { HeaderComponent } from './components/header/header.component';
 
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http';
+import { ReversePipe } from './pipes/reverse.pipe';
+import { TimeAgoPipe } from './pipes/time-ago.pipe';
+import { HighlightDirective } from './directives/highlight.directive'
 
 @NgModule({
   declarations: [
@@ -18,7 +21,10 @@ import { HttpClientModule } from '@angular/common/http'
     ImgComponent,
     ProductComponent,
     ProductsComponent,
-    HeaderComponent
+    HeaderComponent,
+    ReversePipe,
+    TimeAgoPipe,
+    HighlightDirective
   ],
   imports: [
     BrowserModule,
